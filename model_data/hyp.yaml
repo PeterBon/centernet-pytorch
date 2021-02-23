@@ -1,0 +1,63 @@
+# 输入
+input_shape: (512,512,3) # 训练的输入图像大小
+annotation_path: tt100k_train.txt # 训练文件路径
+anchors_path: model_data/yolo_anchors.txt # anchor文件路径
+classes_path: model_data/tt100k_classes.txt # classes文件路径
+model_path: logs/last.pth # 预训练文件路径
+val_split: 0.1 # 用于验证集的比例
+log_dir: logs # log目录
+
+# 训练参数
+start_epoch: 166 # 起始epoch
+end_epoch: 300 # 结束epoch
+epochs: 300 # 总的epoch数
+freeze: False # 是否冻结训练
+lr_scheduler: cosine # 学习率曲线
+lr: 0.001 # Adam优化器中的初始学习率
+lrf: 0.1 # cosine学习率系数的最小值
+weight_decay: 0.0005 # Adam优化器中的权重衰减参数
+batch_size: 16 # 批大小
+smoooth_label: 0
+
+# 图像增强
+mosaic: False # 是否使用mosaic图像增强
+# hsv_augment
+hsv_h: 0.1
+hsv_s: 0.5
+hsv_v: 0.5
+# random_crop
+area_thr: 0.6 # 随机裁剪参数，根据裁剪前后box的面积之比，剔除不合格box
+# random_perspective
+degrees: 10
+translate: 0.1
+scale: 0.1
+shear: 10
+perspective: 0.001 # 0-0.001
+# random_blur
+kernel: 11
+# random_noise
+random_noise_prob: 0.5
+random_noise_mode: gaussian
+random_noise_mean: 0
+random_noise_var: 0.01
+
+
+
+#lr0: 0.0032
+#lrf: 0.12
+#momentum: 0.843
+#warmup_epochs: 2.0
+#warmup_momentum: 0.5
+#warmup_bias_lr: 0.05
+#giou: 0.0296
+#cls: 0.243
+#cls_pw: 0.631
+#obj: 0.301
+#obj_pw: 0.911
+#iou_t: 0.2
+#anchor_t: 2.91
+## anchors: 3.63
+#fl_gamma: 0.0
+#flipud: 0.00856
+#fliplr: 0.5
+#mixup: 0.243

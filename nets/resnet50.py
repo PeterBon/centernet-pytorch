@@ -128,12 +128,8 @@ class ResNet(nn.Module):
 
         return x
 
-def resnet50(pretrain = True):
+def resnet50():
     model = ResNet(Bottleneck, [3, 4, 6, 3])
-    
-    if pretrain:
-        state_dict = load_state_dict_from_url(model_urls['resnet50'])
-        model.load_state_dict(state_dict)
 
     # 获取特征提取部分
     features = list([model.conv1, model.bn1, model.relu, model.maxpool, model.layer1, model.layer2, model.layer3, model.layer4])
